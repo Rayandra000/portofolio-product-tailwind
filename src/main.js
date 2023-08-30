@@ -103,3 +103,52 @@ function lightMode() {
   themeBtn.classList.replace("ri-sun-line", "ri-moon-line");
   localStorage.setItem("mode", "light");
 }
+
+const activeLink = () => {
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav__link");
+
+  let current = "home";
+
+  sections.forEach((section) => {
+    const sectioTop = section.offsetTop;
+
+    if (this.scrollY >= sectioTop - 60) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((item) => {
+    item.classList.remove("text-secondaryColor");
+    if (item.href.includes(current)) {
+      item.classList.add("text-secondaryColor");
+    }
+  });
+};
+
+window.addEventListener("scroll", activeLink);
+
+const sr = ScrollReveal({
+  origin: "top",
+  distance: "60px",
+  duration: 2500,
+  delay: 400,
+});
+
+sr.reveal(".home__image");
+sr.reveal(".home__content", { origin: "bottom" });
+
+sr.reveal(".category__card", { interval: 300 });
+
+sr.reveal(".promo__card1", { origin: "left" });
+sr.reveal(".promo__card2", { origin: "right" });
+
+sr.reveal(".about__image", { origin: "bottom" });
+sr.reveal(".about__content", { origin: "top" });
+
+sr.reveal(".menu__content", { origin: "right" });
+sr.reveal(".menu__items", { origin: "left" });
+
+sr.reveal(".customer__review", { origin: "right" });
+
+sr.reveal(".footer");
